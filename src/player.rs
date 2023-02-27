@@ -86,16 +86,17 @@ impl Player {
             _ => println!("Senior graduates")
         }
     }
-}
 
-pub fn create_player(name: String, age: i8, year: Year, redshirt: bool) -> Player {
-    // using field init shorthand
-    Player { 
-        name,
-        age,
-        attributes: Attributes { ..Default::default() },
-        year,
-        redshirt,
-        redshirting: false
+    pub fn new(name: String, age: i8, year: Year, redshirt: bool) -> Player {
+        // using field init shorthand
+        Player { 
+            name,
+            age,
+            attributes: Attributes { ..Default::default() },
+            year,
+            redshirt,
+            redshirting: false
+        }
     }
 }
+
