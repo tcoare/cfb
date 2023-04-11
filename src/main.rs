@@ -1,10 +1,14 @@
 #![allow(dead_code)]
 
-mod player;
-mod utils;
-mod coach;
+mod team {
+    pub mod player;
+    pub mod coach;
+}
 
-use crate::utils::Summary;
+mod traits;
+
+use crate::traits::Summary;
+use team::player::{Player, Year, Attributes};
 
 fn main() {
     player_testing()
@@ -12,11 +16,11 @@ fn main() {
 
 
 fn player_testing() {
-    let mut quinn = player::Player {
+    let mut quinn = Player {
         name: "Quinn Ewers".to_string(),
         age: 18,
-        year: player::Year::Freshman,
-        attributes: player::Attributes {
+        year: Year::Freshman,
+        attributes: Attributes {
             throw_power: 12,
             throw_accuracy: 14,
         },
@@ -25,10 +29,10 @@ fn player_testing() {
     };
     println!("{:?}", quinn);
 
-    let mut arch = player::Player::new(
+    let mut arch = Player::new(
         String::from("Arch Manning"),
         18,
-        player::Year::Freshman,
+        Year::Freshman,
         false,
     );
     println!("{:?}", arch);

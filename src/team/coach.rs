@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use crate::utils;
+use crate::traits;
 
 enum Playbook {
     Spread,
@@ -14,7 +14,7 @@ struct Coach {
     playbook: Playbook
 }
 
-impl utils::Summary for Coach {
+impl traits::Summary for Coach {
     fn summarise(&self) -> String {
         format!("{} {}", self.name, self.age)
     }

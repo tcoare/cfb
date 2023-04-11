@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use crate::utils;
+use crate::traits;
 
 // literally everything in here is public, probably want to add getters for things
 // we might not want to be
@@ -62,7 +62,7 @@ impl Player {
     }
 }
 
-impl utils::Summary for Player {
+impl traits::Summary for Player {
     fn summarise(&self) -> String {
         format!("{} {}", self.name, self.age)
     }
