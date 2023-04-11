@@ -1,47 +1,9 @@
 #![allow(dead_code)]
 
+use crate::utils;
+
 // literally everything in here is public, probably want to add getters for things
 // we might not want to be
-
-#[derive(Debug)]
-pub enum Year {
-    Freshman,
-    Sophomore,
-    Junior,
-    Senior
-}
-
-impl Year {
-    fn to_string(&self) -> &str {
-        match self {
-            Year::Freshman => "Freshman",
-            Year::Sophomore => "Sophomore",
-            Year::Junior => "Junior",
-            Year::Senior => "Senior"
-        }
-    }
-}
-
-
-// using default so we can get an empty attributes without having to type them out
-#[derive(Debug, Default)]
-pub struct Attributes {
-    pub throw_power: i8,
-    pub throw_accuracy: i8
-}
-
-impl Attributes {
-    // interesting way of manipulating types of structs?
-    // or just bad way of using structs?
-    pub fn as_array(&self) -> [i8; 2] {
-        [self.throw_power, self.throw_accuracy]
-    }
-
-    pub fn highest_attribute(&self) -> i8 {
-        // not really sure how this works yet, and if you are allwed to return references or not
-        self.as_array().into_iter().max().unwrap()
-    }
-}
 
 #[derive(Debug)]
 pub struct Player {
@@ -100,3 +62,49 @@ impl Player {
     }
 }
 
+impl utils::Summary for Player {
+    fn summarise(&self) -> String {
+        format!("{} {}", self.name, self.age)
+    }
+}
+
+
+#[derive(Debug)]
+pub enum Year {
+    Freshman,
+    Sophomore,
+    Junior,
+    Senior
+}
+
+impl Year {
+    fn to_string(&self) -> &str {
+        match self {
+            Year::Freshman => "Freshman",
+            Year::Sophomore => "Sophomore",
+            Year::Junior => "Junior",
+            Year::Senior => "Senior"
+        }
+    }
+}
+
+
+// using default so we can get an empty attributes without having to type them out
+#[derive(Debug, Default)]
+pub struct Attributes {
+    pub throw_power: i8,
+    pub throw_accuracy: i8
+}
+
+impl Attributes {
+    // interesting way of manipulating types of structs?
+    // or just bad way of using structs?
+    pub fn as_array(&self) -> [i8; 2] {
+        [self.throw_power, self.throw_accuracy]
+    }
+
+    pub fn highest_attribute(&self) -> i8 {
+        // not really sure how this works yet, and if you are allwed to return references or not
+        self.as_array().into_iter().max().unwrap()
+    }
+}
